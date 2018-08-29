@@ -1,0 +1,44 @@
+<section class="clearfix thingsArea">
+   <div class="container">
+      <div class="page-header text-center">
+         <h2>The best {{ beverageName }} Sligo has to offer <small>According to the Google Places API</small></h2>
+      </div>
+      <div class="row">
+         <div class="loaderText" *ngIf="!locations">Finding {{ beverageName }}...</div>
+         <div *ngFor="let location of this.locations;">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+               <div class="thingsBox thinsSpace">
+                  <div class="thingsImage">
+                     <img *ngIf="!location.photos" src="assets/img/things/things-4.jpg" alt="Image things">
+                     <img *ngIf="location.photos" src="{{location.photos[0].getUrl({ maxWidth: 500 })}}" alt="Image things">
+                     <div class="thingsMask">
+                        <ul class="list-inline rating">
+                           <li><i [className]="location.rating >= 1 ? 'fa fa-star' : 'fa fa-star-o'" class="fa" aria-hidden="true"></i></li>
+                           <li><i [className]="location.rating >= 2 ? 'fa fa-star' : 'fa fa-star-o'" class="fa" aria-hidden="true"></i></li>
+                           <li><i [className]="location.rating >= 3 ? 'fa fa-star' : 'fa fa-star-o'" class="fa" aria-hidden="true"></i></li>
+                           <li><i [className]="location.rating >= 4 ? 'fa fa-star' : 'fa fa-star-o'" class="fa" aria-hidden="true"></i></li>
+                           <li><i [className]="location.rating == 5 ? 'fa fa-star' : 'fa fa-star-o'" class="fa" aria-hidden="true"></i></li>
+                        </ul>
+                        <a href="details?locationId={{location.place_id}}">
+                           <h2>{{location.name}} <i class="fa fa-check-circle" aria-hidden="true"></i></h2>
+                        </a>
+                        <p>{{location.formatted_address}}</p>
+                     </div>
+                  </div>
+                  <div class="thingsCaption ">
+                     <ul class="list-inline captionItem">
+                        <li><i class="fa fa-heart-o" aria-hidden="true"></i> {{location.rating }}</li>
+                        <li><a href="details?locationId={{location.place_id}}">More Info</a></li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-xs-12">
+            <div class="btnArea btnAreaBorder text-center">
+               <a href="{{ moreLink }}" class="btn btn-primary">See More</a>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>

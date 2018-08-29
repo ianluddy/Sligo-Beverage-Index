@@ -1,0 +1,41 @@
+
+### Q/A
+
+1. How long did it take to complete the solution?
+
+  About 4.5 hours
+
+2. What would you add if you had more time?
+
+  Automated testing
+  SASS
+  A nice navbar logo
+  Pagination
+
+3. How would you deploy this to production?
+
+  Use the Angular CLI to build solution in production mode using 'ng build --prod'
+  Serve using Apache on an AWS EC2 instance
+  Configure SSL encryption
+  Configure Google Analytics
+
+4. How would you debug it in production?
+
+  Client side:
+  Load the app in Chrome
+  Check the console for errors, use debugger if necessary
+  Check network console for failing requests
+  You could also use something like Augury to debug: https://chrome.google.com/webstore/detail/augury/elgalmkoelokbchhkhacckoklkejnhcd
+
+  Server side:
+  SSH onto the box
+  Check Apache error and access logs
+  Check resource levels using 'top' to identify performance/memory issues
+
+5. How would you know if it is failing at 2am?
+
+  For failing processes I would use a tool like monit (https://mmonit.com/monit/) to monitor the Apache
+  processes, restart any that fail, and send an alert email.
+
+  For catching live issues I would use rollbar (https://rollbar.com/), it's very easy to
+  setup and integrates with Angular nicely.
